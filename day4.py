@@ -1,8 +1,7 @@
 #147981-691423 range
 T = [str(a) for a in range(147981,691424)]
-c = False #kryterium
+c = False #standard
 r = 0
-H = []
 for i in range(len(T)):
     for j in range(len(T[i])-1):
         if int(T[i][j])>int(T[i][j+1]):
@@ -12,7 +11,6 @@ for i in range(len(T)):
             c = True
     if c==True:
         r+=1
-        H.append(T[i])
         c = False
 
 print(r)
