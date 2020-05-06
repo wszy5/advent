@@ -48,14 +48,27 @@ for i in range(1,len(T)):
     T[j+1] = key
 '''
 
+code_q = '''
+T = [2,6,2,2,5,3,44,2,5,8,7,0]
+def quick_sort(T):
+    if len(T)<2:
+        return(T)
+    pivot = T[len(T)//2]
+    less = [i for i in T[:len(T)//2]+T[len(T)//2+1:] if i<pivot]
+    greater = [i for i in T[:len(T)//2]+T[len(T)//2+1:] if i>pivot]
+    return(quick_sort(less)+pivot+quick_sort(greater))
+'''
+
 b = timeit.timeit(stmt=code_b,number=10000)
 c = timeit.timeit(stmt=code_c,number=10000)
 i = timeit.timeit(stmt=code_i,number=10000)
 s = timeit.timeit(stmt=code_s,number=10000)
+q = timeit.timeit(stmt=code_q,number=10000)
 
 print('''\nRanking szybkości algorytmów sortowania\n''')
-d = {'Bubble sort':b,'Counting sort':c,'Insertion sort':i,'Selection sort':s}
+d = {'Bubble sort':b,'Counting sort':c,'Insertion sort':i,'Selection sort':s,'Quick sort':q}
 d = dict(sorted(d.items(),key=lambda x: x[1]))
 
 for key,value in d.items():
     print(f'{key} -> {value}')
+
